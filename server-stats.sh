@@ -9,7 +9,9 @@ echo ""
 echo "--- CPU yuklamasi ---"
 cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed 's/,/ /g' | awk '{print 100 - $8}' )
 echo " CPU band: $cpu_usage %"
+echo ""
 
+#RAM yuklamasi
 echo "--- RAM ishlashi ---"
 mem_total=$(free -m | awk 'NR==2 {print $2}')
 mem_used=$(free -m | awk 'NR==2 {print $3}')
@@ -20,4 +22,17 @@ echo " Umumiy:       $mem_total Mb"
 echo " Ishlatilgan:  $mem_used Mb"
 echo " Bo'sh:        $mem_free Mb"
 echo " Foiz:         $mem_percent %"
+echo ""
+
+#Disk yuklamasi
+echo "--- Disk ishlashi ---"
+disk_total=$(df -h / | awk 'NR==2 {print $2}')
+disk_used=$(df -h / | awk 'NR==2 {print $3}')
+disk_free=$(df -h / | awk 'NR==2 {print $4}')
+disk_percent=$(df -h / | awk 'NR==2 {print $5}')
+
+echo " Umumiy:       $disk_total"
+echo " Ishlatilgan:  $disk_used"
+echo " Bo'sh:        $disk_free"
+echo " Foiz:         $disk_percent"
 echo ""
