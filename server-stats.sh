@@ -48,4 +48,56 @@ ps aux --sort=-%mem | awk 'NR<=6 {printf "%-10s %-8s %-6s %s\n", $1, $2, $4, $11
 echo ""
 
 
+echo "======================================="
+echo "         System information"
+echo "======================================="
+echo ""
+
+
+#OS versiya
+os_name=$(grep "PRETTY_NAME" /etc/os-release | cut -d'"' -f2)
+echo " OS:            $os_name"
+echo ""
+
+
+uptime_info=$(uptime -p)
+echo " Ishlash vaqti:  $uptime_info"
+echo ""
+
+
+load_avg=$(uptime | awk -F'load average:' '{print $2}' | xargs)
+echo " O'rtacha yuklama: $load_avg"
+echo ""
+
+
+users_count=$(who | wc -l)
+echo " Kirgan userlar:   $users_count"
+echo ""
+
+
+failed_logins=$(grep "Failed password" /var/log/auth.log | wc -l)
+echo " Failed login:     $failed_logins"
+echo ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
