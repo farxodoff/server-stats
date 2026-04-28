@@ -74,9 +74,12 @@ users_count=$(who | wc -l)
 echo " Kirgan userlar:   $users_count"
 echo ""
 
-
-failed_logins=$(grep "Failed password" /var/log/auth.log | wc -l)
-echo " Failed login:     $failed_logins"
+if [ -r /var/log/auth.log ]; then
+    failed_logins=$(grep "Failed password" /var/log/auth.log 2>/dev/null | wc -l)
+    echo " Failed login:     $failed_logins"
+else
+    echo " Failed login: ma'lumot topilmadi! (sudo kerak)"
+fi
 echo ""
 
 
