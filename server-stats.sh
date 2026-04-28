@@ -36,3 +36,16 @@ echo " Ishlatilgan:  $disk_used"
 echo " Bo'sh:        $disk_free"
 echo " Foiz:         $disk_percent"
 echo ""
+
+#TOP5 CPU usage
+echo "--- Top 5 CPU jarayonlari ---"
+ps aux --sort=-%cpu | awk 'NR<=6 {printf "%-10s %-8s %-6s %s\n", $1, $2, $3, $11}'
+echo ""
+
+#TOP5 RAM usage
+echo "--- Top 5 RAM jarayonlari ---"
+ps aux --sort=-%mem | awk 'NR<=6 {printf "%-10s %-8s %-6s %s\n", $1, $2, $4, $11}'
+echo ""
+
+
+
